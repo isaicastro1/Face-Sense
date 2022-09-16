@@ -83,6 +83,10 @@ class App extends Component {
 
   // If model is not working, try this instead
   // .predict('53e1df302c079b3db8a0a36033ed2d15')
+
+  // https://www.clarifai.com/models/face-detection
+  // To check if servers are up go to website above and
+  // see if face recognition is working there
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
     app.models
