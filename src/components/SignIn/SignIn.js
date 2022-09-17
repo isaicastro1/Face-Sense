@@ -18,9 +18,6 @@ class SignIn extends React.Component {
   };
 
   onSubmitSignIn = (e) => {
-    if (this.state.guest === true) {
-      onRouteChange("home");
-    }
     const { loadUser, onRouteChange } = this.props;
     e.preventDefault();
     fetch("https://face-recognition-back-end.herokuapp.com/signin", {
@@ -41,7 +38,7 @@ class SignIn extends React.Component {
   };
 
   render() {
-    const { onRouteChange } = this.props;
+    const { onRouteChange, onGuestSignIn } = this.props;
     return (
       <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5">
         <main className="pa4 black-80">
@@ -86,7 +83,10 @@ class SignIn extends React.Component {
                 className="b ph3 mt3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="button"
                 value="Guest Sign in"
-                onClick={() => onRouteChange("home")}
+                onClick={() => {
+                  onRouteChange("home");
+                  onGuestSignIn(true);
+                }}
               />
             </div>
             <div className="lh-copy mt3">

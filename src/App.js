@@ -7,6 +7,7 @@ import SignIn from "./components/SignIn/SignIn";
 import Register from "./components/Register/Register";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
+import GuestRank from "./components/Rank/GuestRank";
 import "./App.css";
 
 const particlesOptions = {
@@ -26,10 +27,11 @@ const initialState = {
   imageUrl: "",
   box: {},
   route: "signin",
+  guest: false,
   isSignedIn: false,
   user: {
     id: "",
-    name: "Guest",
+    name: "",
     email: "",
     entries: 0,
     joined: "",
@@ -125,8 +127,12 @@ class App extends Component {
     this.setState({ route: route });
   };
 
+  onGuestSignIn = (state) => {
+    this.setState({ guest: state });
+  };
+
   render() {
-    const { isSignedIn, route, box, imageUrl } = this.state;
+    const { isSignedIn, route, box, imageUrl, guest } = this.state;
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
@@ -134,7 +140,17 @@ class App extends Component {
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
         />
-        {route === "home" ? (
+        {guest === true ? (
+          <div>
+            <Logo />
+            <GuestRank />
+            <ImageLinkForm
+              onInputChange={this.onInputChange}
+              onButtonSubmit={this.onButtonSubmit}
+            />
+            <FaceRecognition box={box} imageUrl={imageUrl} />
+          </div>
+        ) : route === "home" ? (
           <div>
             <Logo />
             <Rank
@@ -148,7 +164,11 @@ class App extends Component {
             <FaceRecognition box={box} imageUrl={imageUrl} />
           </div>
         ) : route === "signin" ? (
-          <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+          <SignIn
+            onGuestSignIn={this.onGuestSignIn}
+            loadUser={this.loadUser}
+            onRouteChange={this.onRouteChange}
+          />
         ) : (
           <Register
             loadUser={this.loadUser}
