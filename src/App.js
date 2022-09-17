@@ -29,7 +29,7 @@ const initialState = {
   isSignedIn: false,
   user: {
     id: "",
-    name: "",
+    name: "Guest",
     email: "",
     entries: 0,
     joined: "",

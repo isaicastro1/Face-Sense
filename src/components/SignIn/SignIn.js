@@ -18,6 +18,9 @@ class SignIn extends React.Component {
   };
 
   onSubmitSignIn = (e) => {
+    if (this.state.guest === true) {
+      onRouteChange("home");
+    }
     const { loadUser, onRouteChange } = this.props;
     e.preventDefault();
     fetch("https://face-recognition-back-end.herokuapp.com/signin", {
@@ -70,18 +73,26 @@ class SignIn extends React.Component {
                 />
               </div>
             </fieldset>
-            <div className="">
+            <div>
               <input
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-                type="submit"
+                type="button"
                 value="Sign in"
                 onClick={this.onSubmitSignIn}
+              />
+            </div>
+            <div>
+              <input
+                className="b ph3 mt3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                type="button"
+                value="Guest Sign in"
+                onClick={() => onRouteChange("home")}
               />
             </div>
             <div className="lh-copy mt3">
               <p
                 onClick={() => onRouteChange("register")}
-                className="f6 link dim black db pointer"
+                className="f5 link dim black db pointer"
               >
                 Register
               </p>
