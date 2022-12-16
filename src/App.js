@@ -74,7 +74,7 @@ class App extends Component {
   // see if face recognition is working there
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch("https://itchy-wetsuit-tuna.cyclic.app/imageurl", {
+    fetch("https://face-recognition-back-end.herokuapp.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -84,7 +84,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch("https://itchy-wetsuit-tuna.cyclic.app/image", {
+          fetch("https://face-recognition-back-end.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
