@@ -20,7 +20,7 @@ class SignIn extends React.Component {
   onSubmitSignIn = (e) => {
     const { loadUser, onRouteChange } = this.props;
     e.preventDefault();
-    fetch("https://face-recognition-back-end.herokuapp.com/signin", {
+    fetch("https://itchy-wetsuit-tuna.cyclic.app/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
