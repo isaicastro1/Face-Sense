@@ -27,7 +27,10 @@ class Register extends React.Component {
     fetch("https://face-recognition-back-end.herokuapp.com/register", {
       mode: "cors",
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({
         name: this.state.name,
         email: this.state.email,
