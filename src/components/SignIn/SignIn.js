@@ -23,7 +23,10 @@ class SignIn extends React.Component {
     fetch("https://face-recognition-back-end.herokuapp.com/signin", {
       mode: "no-cors",
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "https://face-sense.netlify.app",
+      },
       body: JSON.stringify({
         email: this.state.signInEmail,
         password: this.state.signInPassword,
