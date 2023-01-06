@@ -25,11 +25,11 @@ class Register extends React.Component {
   onSubmitSignIn = (e) => {
     e.preventDefault();
     fetch("https://face-recognition-back-end.herokuapp.com/register", {
-      mode: "cors",
+      mode: "no-cors",
       method: "post",
       headers: {
-        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: this.state.name,
