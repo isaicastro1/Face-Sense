@@ -21,7 +21,6 @@ class SignIn extends React.Component {
     const { loadUser, onRouteChange } = this.props;
     e.preventDefault();
     fetch("https://face-recognition-back-end.herokuapp.com/signin", {
-      mode: "cors",
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
