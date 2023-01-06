@@ -24,8 +24,8 @@ class SignIn extends React.Component {
       mode: "no-cors",
       method: "post",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
-        Origin: "https://face-sense.netlify.app",
       },
       body: JSON.stringify({
         email: this.state.signInEmail,
