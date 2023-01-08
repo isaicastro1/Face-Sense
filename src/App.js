@@ -67,28 +67,37 @@ class App extends Component {
   };
 
   // If model is not working, try this instead
-  // .predict('53e1df302c079b3db8a0a36033ed2d15')
+  // .predict('53e1df302c079b3db8a0a36033ed2d15', input)
 
   // https://www.clarifai.com/models/face-detection
   // To check if servers are up go to website above and
   // see if face recognition is working there
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
+    console.log("state", this.state.input);
+    // fetch("http://localhost:3001/imageurl", {
     fetch("https://face-recognition-back-end.herokuapp.com/imageurl", {
-      mode: "cors",
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         input: this.state.input,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
       .then((response) => {
         if (response) {
           fetch("https://face-recognition-back-end.herokuapp.com/image", {
-            mode: "cors",
             method: "put",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify({
               id: this.state.user.id,
             }),

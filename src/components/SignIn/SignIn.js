@@ -21,7 +21,6 @@ class SignIn extends React.Component {
     const { loadUser, onRouteChange } = this.props;
     e.preventDefault();
     fetch("https://face-recognition-back-end.herokuapp.com/signin", {
-      mode: "no-cors",
       method: "post",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -32,13 +31,16 @@ class SignIn extends React.Component {
         password: this.state.signInPassword,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((user) => {
         if (user.id) {
           loadUser(user);
           onRouteChange("home");
         }
-      });
+      })
+      .catch((err) => console.log("Ooops", err));
   };
 
   render() {
