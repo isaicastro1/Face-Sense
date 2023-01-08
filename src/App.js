@@ -89,6 +89,10 @@ class App extends Component {
         return response.json();
       })
       .then((response) => {
+        if (this.state.guest) {
+          this.displayFaceBox(this.calculateFaceLocation(response));
+          return;
+        }
         if (response) {
           fetch("https://face-recognition-back-end.herokuapp.com/image", {
             method: "put",
