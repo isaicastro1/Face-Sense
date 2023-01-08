@@ -74,7 +74,6 @@ class App extends Component {
   // see if face recognition is working there
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    console.log("state", this.state.input);
     // fetch("http://localhost:3001/imageurl", {
     fetch("https://face-recognition-back-end.herokuapp.com/imageurl", {
       method: "post",
@@ -87,7 +86,6 @@ class App extends Component {
       }),
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((response) => {
